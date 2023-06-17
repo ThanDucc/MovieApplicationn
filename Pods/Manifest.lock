@@ -1,0 +1,20 @@
+PODS:
+  - DropDown (2.3.13)
+  - UPCarouselFlowLayout (1.1.2)
+
+DEPENDENCIES:
+  - DropDown
+  - UPCarouselFlowLayout
+
+SPEC REPOS:
+  trunk:
+    - DropDown
+    - UPCarouselFlowLayout
+
+SPEC CHECKSUMS:
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  UPCarouselFlowLayout: 4c7d2c43a10ebb1597bde502a53699d378341dad
+
+PODFILE CHECKSUM: 51743f8fc50384ec752b9e3fc54440dcbdeb0c79
+
+COCOAPODS: 1.8.4
