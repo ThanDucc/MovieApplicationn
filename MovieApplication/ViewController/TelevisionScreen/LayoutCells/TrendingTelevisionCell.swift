@@ -60,5 +60,3 @@ class TrendingTelevisionCell: UITableViewCell {
         dropDown.show()
     }
 }
-
-

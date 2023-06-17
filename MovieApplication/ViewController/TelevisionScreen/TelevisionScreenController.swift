@@ -15,7 +15,7 @@ class TelevisionScreenController: UIViewController {
     @IBOutlet weak var tbLayout: UITableView!
     @IBOutlet weak var imgAccount: UIImageView!
     
-    let listNibNameCell: [String] = ["TrendingTelevisionCell", "AiringTodayCell", "PopularCell", "TopRateCell"]
+    let listNibNameCell: [String] = ["TrendingTelevisionCell", "AiringTodayCell", "ListTVCell", "ListTVCell", "ListTVCell"]
     var listCollectionViewFromCells = [UICollectionView]()
     
     var genreList: Genre?
@@ -39,6 +39,7 @@ class TelevisionScreenController: UIViewController {
         
         tbLayout.delegate = self
         tbLayout.dataSource = self
+        
         for nibName in listNibNameCell {
             tbLayout.register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: nibName)
         }
@@ -117,12 +118,7 @@ class TelevisionScreenController: UIViewController {
 
 extension TelevisionScreenController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch tableView {
-        case tbLayout:
-            return listNibNameCell.count
-        default:
-            return 0
-        }
+        return listNibNameCell.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -144,10 +140,16 @@ extension TelevisionScreenController: UITableViewDelegate, UITableViewDataSource
                 listCollectionViewFromCells.append(cell.clAiringTodayMovie)
                 return cell
             case 2:
-                let cell = tableView.dequeueReusableCell(withIdentifier: listNibNameCell[indexPath.row]) as! PopularCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: listNibNameCell[indexPath.row]) as! ListTVCell
+                cell.type = "Popular"
                 return cell
             case 3:
-                let cell = tableView.dequeueReusableCell(withIdentifier: listNibNameCell[indexPath.row]) as! TopRateCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: listNibNameCell[indexPath.row]) as! ListTVCell
+                cell.type = "Top Rated"
+                return cell
+            case 4:
+                let cell = tableView.dequeueReusableCell(withIdentifier: listNibNameCell[indexPath.row]) as! ListTVCell
+                cell.type = "On The Air"
                 return cell
             default:
                 return UITableViewCell()

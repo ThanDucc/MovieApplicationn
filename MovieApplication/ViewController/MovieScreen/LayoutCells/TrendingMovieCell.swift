@@ -22,7 +22,7 @@ class TrendingMovieCell: UITableViewCell {
     }
     
     private func setupUI() {
-        sgmTrendingFilter.setBackgroundImage(UIImage(color: .white), for: .normal, barMetrics: .default)
+        sgmTrendingFilter.setBackgroundImage(UIImage(color: .systemBackground), for: .normal, barMetrics: .default)
 
         let normalAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 13, weight: .light)]
         let selectedAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 13, weight: .medium)]
@@ -33,6 +33,18 @@ class TrendingMovieCell: UITableViewCell {
         
         let MovieGenreNib = UINib(nibName: "MovieGenreCell", bundle: nil)
         clMovieGenre.register(MovieGenreNib, forCellWithReuseIdentifier: "MovieGenreCell")
+        
+        btnOptions.setBackgroundImage(UIImage(named: "more_horiz")?.withTintColor(.label), for: .normal)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(notificationThemeChange), name: Notification.Name("Theme Changed"), object: nil)
+    }
+    
+    @objc func notificationThemeChange() {
+        if MainScreenController.tabbar!.overrideUserInterfaceStyle == .dark {
+            self.sgmTrendingFilter.setBackgroundImage(UIImage(color: .black), for: .normal, barMetrics: .default)
+        } else if MainScreenController.tabbar!.overrideUserInterfaceStyle == .light {
+            self.sgmTrendingFilter.setBackgroundImage(UIImage(color: .white), for: .normal, barMetrics: .default)
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
